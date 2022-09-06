@@ -1,1 +1,4 @@
 FIXME ansible_host=193.40.156.67 ansible_port=7622 ansible_ssh_user=ubuntu
+
+[web_servers]
+FIXME
