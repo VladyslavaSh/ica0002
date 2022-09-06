@@ -3,3 +3,8 @@
     update_cache: yes
     name: nginx
     state: present
+
+- name: Index page
+ansible.builtin.copy:
+  src: index.html
+  dest: /var/www/html/index.html
