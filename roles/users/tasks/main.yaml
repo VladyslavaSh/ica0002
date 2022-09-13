@@ -15,3 +15,7 @@
   ansible.posix.authorized_key:
     user: roman
     key: https://github.com/romankuchin.keys
+
+- name: Set a system user named agama
+  ansible.builtin.user:
+    name: agama

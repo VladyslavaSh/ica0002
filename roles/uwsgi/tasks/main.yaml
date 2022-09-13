@@ -1,0 +1,11 @@
+- name: Install uWSGI
+  ansible.builtin.apt:
+    update_cache: yes
+    name: uwsgi
+    state: present
+
+- name: Install uWSGI plugin Python3
+  ansible.builtin.apt:
+    update_cache: yes
+    name: uwsgi-plugin-python3
+    state: present

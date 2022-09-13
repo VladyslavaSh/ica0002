@@ -1,0 +1,10 @@
+- name: Create directory for app installation
+  ansible.builtin.file:
+    path: /opt/agama
+    owner: agama
+    state: directory
+
+- name: Download publicly available files from the Internet to the managed host
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/hudolejev/agama/master/agama.py
+    dest: /opt/agama

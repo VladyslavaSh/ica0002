@@ -2,8 +2,8 @@
   - name: Web Servers
     hosts: web_servers
     roles:
-      - test_connection
       - users
+      - agama
       - nginx
     become: yes
 
