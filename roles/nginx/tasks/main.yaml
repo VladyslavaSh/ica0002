@@ -5,15 +5,9 @@
     state: present
 
 
-- name: Index page
-  ansible.builtin.copy:
-    src: index.html
-    dest: /var/www/html/index.html
-
-
-- name: Replace file with a copy
+- name: Replace a file
   ansible.builtin.copy:
     src: default
     dest: /etc/nginx/sites-enabled/default
-
-
+  when: "ansible_service_mgr == 'systemd'"
+  notify: Restart nginx

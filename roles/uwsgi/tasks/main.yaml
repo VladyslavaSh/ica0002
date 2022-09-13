@@ -9,3 +9,11 @@
     update_cache: yes
     name: uwsgi-plugin-python3
     state: present
+
+- name: Add the uWSGI configuration for AGAMA application
+  ansible.builtin.copy:
+    src: agama.ini
+    dest: /etc/uwsgi/apps-enabled/agama.ini
+    owner: agama
+  when: "ansible_service_mgr == 'systemd'"
+  notify: Restart uWSGI
