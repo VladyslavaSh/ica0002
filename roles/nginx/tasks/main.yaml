@@ -9,3 +9,11 @@
   ansible.builtin.copy:
     src: index.html
     dest: /var/www/html/index.html
+
+
+- name: Replace file with a copy
+  ansible.builtin.copy:
+    src: default
+    dest: /etc/nginx/sites-enabled/default
+
+
