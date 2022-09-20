@@ -1,4 +1,16 @@
 ---
+  - name: Init
+    hosts: all
+    roles:
+      - init
+    become: yes
+
+  - name: Database server
+    hosts: db_servers
+    roles:
+      - mysql
+    become: yes
+
   - name: Web Servers
     hosts: web_servers
     roles:
