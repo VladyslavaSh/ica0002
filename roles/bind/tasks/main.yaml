@@ -1,0 +1,16 @@
+- apt:
+    name: bind9
+
+- template:
+     dest: /etc/bind/named.conf.options
+     src: named.conf.options.j2
+  notify: Restart Bind9
+
+- template:
+     dest: /etc/bind/named.conf.local
+     src: named.conf.local.j2
+  notify: Restart Bind9
+
+- template:
+     dest: /var/lib/bind/db.vlada.vld
+     src: db.vlada.vld.j2

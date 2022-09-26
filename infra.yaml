@@ -20,4 +20,8 @@
       - nginx
     become: yes
 
-
+  - name: DNS servers
+    hosts: dns_server # Play runs only on DNS server
+    roles:
+      - bind
+    become: yes

@@ -1,0 +1,19 @@
+acl lan {192.168.42.0/24; 192.168.43.0/24; 127.0.0.0/8;};
+
+options {
+        directory "/var/lib/bind";
+
+        forwarders {
+        {% for fwrd in forwarders %}
+            {{ fwrd }};
+        {% endfor %}
+        };
+
+        dnssec-validation no;
+
+        allow-query {
+            lan;
+        };
+
+        listen-on-v6 { any; };
+};
