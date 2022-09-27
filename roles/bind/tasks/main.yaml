@@ -19,8 +19,8 @@
      dest: /var/lib/bind/db.vlada.vld
      src: db.vlada.vld.j2
 
-- name: Check collected variables
-  ansible.builtin.debug:
-     var:
-     - vm1
-     - vm2
+#- name: Check collected variables
+#  ansible.builtin.debug:
+#     var:
+#     - vm1
+#     - vm2
