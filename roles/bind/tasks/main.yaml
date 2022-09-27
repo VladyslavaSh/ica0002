@@ -1,16 +1,26 @@
-- apt:
+- name: Install Bind9
+  ansible.builtin.apt:
     name: bind9
 
-- template:
+- name: Add named.conf.options file
+  ansible.builtin.template:
      dest: /etc/bind/named.conf.options
      src: named.conf.options.j2
   notify: Restart Bind9
 
-- template:
+- name: Add named.conf.local file
+  ansible.builtin.template:
      dest: /etc/bind/named.conf.local
      src: named.conf.local.j2
   notify: Restart Bind9
 
-- template:
+- name: Add DNS file
+  ansible.builtin.template:
      dest: /var/lib/bind/db.vlada.vld
      src: db.vlada.vld.j2
+
+- name: Check collected variables
+  ansible.builtin.debug:
+     var:
+     - vm1
+     - vm2

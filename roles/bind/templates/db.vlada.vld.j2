@@ -1,5 +1,5 @@
 $TTL	604800
-vlada.vld.	IN	SOA	vm1.vlada.vld. vlada.vlada.vld. (
+{{ startup_name }}.	IN	SOA	vm1.{{ startup_name }}. vlada.{{ startup_name }}. (
 			      2		; Serial
 			 604800		; Refresh
 			  86400		; Retry
@@ -7,5 +7,5 @@ vlada.vld.	IN	SOA	vm1.vlada.vld. vlada.vlada.vld. (
 			 604800 )	; Negative Cache TTL
 ;
 vlada.vld.	IN	NS	VladyslavaSh-1
-VladyslavaSh-1	IN	A	{{ hostvars[VladyslavaSh-1]['ansible_default_ipv4']['address'] }}
-VladyslavaSh-2	IN	A	{{ hostvars[VladyslavaSh-2]['ansible_default_ipv4']['address'] }}
+{{ vm1 }}	IN	A	{{ hostvars['VladyslavaSh-1']['ansible_default_ipv4']['address'] }}
+{{ vm2 }}	IN	A	{{ hostvars['VladyslavaSh-2']['ansible_default_ipv4']['address'] }}

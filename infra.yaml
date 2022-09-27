@@ -1,8 +1,20 @@
 ---
-  - name: Init
+  #- name: Init
+  #  hosts: all
+  #  roles:
+  #    - init
+  #  become: yes
+
+  - name: DNS server
+    hosts: dns_servers
+    roles:
+      - bind
+    become: yes
+
+  - name: Resolver
     hosts: all
     roles:
-      - init
+      - resolver
     become: yes
 
   - name: Database server
@@ -20,8 +32,7 @@
       - nginx
     become: yes
 
-  - name: DNS servers
-    hosts: dns_server # Play runs only on DNS server
+  - name: Collect info about all VMs
+    hosts: all
     roles:
-      - bind
-    become: yes
+      - setup
