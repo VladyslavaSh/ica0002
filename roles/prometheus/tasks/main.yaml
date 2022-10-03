@@ -1,0 +1,10 @@
+- name: update and install prometheus
+  ansible.builtin.apt:
+    name: prometheus
+    state: present
+
+- name: Prometheus configuration file
+  ansible.builtin.copy:
+    src: prometheus.yaml.j2
+    dest: /etc/prometheus
+  notify: Restart Prometheus

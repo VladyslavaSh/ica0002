@@ -3,6 +3,7 @@
     hosts: all
     roles:
       - init
+      - node-exporter
     become: yes
 
   - name: DNS server
@@ -10,6 +11,7 @@
     gather_facts: no
     roles:
       - bind
+      - prometheus
     become: yes
 
   - name: Resolver
