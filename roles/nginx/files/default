@@ -7,6 +7,6 @@ server {
 		include uwsgi_params;
 	}
         location /prometheus {
-                proxy_pass localhost:9090;
+                proxy_pass http://localhost:9090;
         }
 }

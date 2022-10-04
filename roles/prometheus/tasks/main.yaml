@@ -3,8 +3,25 @@
     name: prometheus
     state: present
 
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: Replace a file
+  ansible.builtin.template:
+    src: default
+    dest: /etc/nginx/sites-enabled/default
+  notify: Restart nginx
+
 - name: Prometheus configuration file
-  ansible.builtin.copy:
-    src: prometheus.yaml.j2
-    dest: /etc/prometheus
+  ansible.builtin.template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus/prometheus.yml
+  notify: Restart Prometheus
+
+- name: Add configuration file to /etc/default/prometheus
+  ansible.builtin.template:
+    src: prometheus.j2
+    dest: /etc/default/prometheus
   notify: Restart Prometheus

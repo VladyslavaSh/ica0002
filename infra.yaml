@@ -3,7 +3,14 @@
     hosts: all
     roles:
       - init
-      - node-exporter
+      - node_exporter
+    become: yes
+
+  - name: Prometheus monitoring
+    hosts: prometheus_servers
+    gather_facts: no
+    roles:
+      - prometheus
     become: yes
 
   - name: DNS server
@@ -11,7 +18,6 @@
     gather_facts: no
     roles:
       - bind
-      - prometheus
     become: yes
 
   - name: Resolver
