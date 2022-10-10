@@ -1,0 +1,9 @@
+- name: Install nginx-prometheus-exporter
+  ansible.builtin.apt:
+    name: nginx-prometheus-exporter
+
+#- name: Restart exporter when changes are applied
+#  ansible.builtin.copy:
+#     src: 
+#     dest: 
+#  notify: Restart nginx-prometheus-exporter

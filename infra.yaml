@@ -4,6 +4,7 @@
     roles:
       - init
       - node_exporter
+      - nginx_exporter
     become: yes
 
   - name: Prometheus monitoring

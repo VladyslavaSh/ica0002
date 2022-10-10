@@ -1,0 +1,5 @@
+- name: Restart bind_exporter
+  ansible.builtin.service:
+    name: bind_exporter
+    state: restarted
+    enabled: yes

@@ -1,0 +1,10 @@
+- name: Install Bind Exporter
+  ansible.builtin.apt:
+    name: bind_exporter
+    state: present
+
+- name: Add configuration file
+  ansible.builtin.template:
+     dest: 
+     src: 
+  notify: Restart bind_exporter

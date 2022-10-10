@@ -1,0 +1,10 @@
+- name: Install nginx
+  ansible.builtin.apt:
+    name: grafana
+    state: present
+
+- name: Restart grafana after changes are applied
+  ansible.builtin.copy:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
+  notify: Restart grafana

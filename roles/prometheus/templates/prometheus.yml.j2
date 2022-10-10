@@ -31,19 +31,24 @@ scrape_configs:
     scrape_interval: 5s
 
     # metrics_path defaults to '/metrics'
+    metrics_path: /prometheus/metrics
     # scheme defaults to 'http'.
 
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: node
+  #- job_name: node
     # If prometheus-node-exporter is installed, grab stats about the local
     # machine by default.
-    static_configs:
-      - targets: ['localhost:9100']
+   # static_configs:
+   #   - targets: ['localhost:9100']
 
    # linux job
-   - job_name: linux
-   static_configs:
-      - targets: groups['all']
+  - job_name: 'linux'
+    static_configs:
+      - targets:
+        {% for vm in groups['all'] %}
+        - {{ vm }}:9100
+        {% endfor %}
 
+# {{ groups['all'] }}

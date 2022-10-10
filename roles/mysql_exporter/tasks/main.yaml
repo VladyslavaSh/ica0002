@@ -1,0 +1,11 @@
+- name: Install MySQL Exporter
+  ansible.builtin.apt:
+    name: mysqld_exporter
+    state: present
+
+- name: Restart mysql_exporter when changes are applied
+  ansible.builtin.template:
+    src: config.my-cnf
+    dest: ~/.my.cnf
+  notify: Daemon reload
+  notify: Restart mysql_exporter

@@ -1,0 +1,5 @@
+- name: Restart nginx-prometheus-exporter
+  ansible.builtin.service:
+    name: nginx-prometheus-exporter
+    state: restarted
+    enabled: yes

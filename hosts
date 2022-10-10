@@ -1,5 +1,5 @@
-VladyslavaSh-1 ansible_host=193.40.156.67 ansible_port=1322 ansible_ssh_user=ubuntu
-VladyslavaSh-2 ansible_host=193.40.156.67 ansible_port=42822 ansible_ssh_user=ubuntu
+VladyslavaSh-1 ansible_host=193.40.156.67 ansible_port=19322 ansible_ssh_user=ubuntu
+VladyslavaSh-2 ansible_host=193.40.156.67 ansible_port=33322 ansible_ssh_user=ubuntu
 
 [dns_servers]
 VladyslavaSh-2
@@ -10,5 +10,8 @@ VladyslavaSh-2
 [web_servers]
 VladyslavaSh-1
 
-[prometheus_servers]
+[prometheus]
 VladyslavaSh-2
+
+[grafana]
+VladyslavaSh-1
