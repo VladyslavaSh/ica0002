@@ -11,14 +11,14 @@
     name: grafana
     state: present
 
+- name: Restart grafana after changes are applied
+  ansible.builtin.template:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
+  notify: Restart grafana
+
 - name: Start grafana
   ansible.builtin.service:
     name: grafana-server
     state: started
     enabled: yes
-
-#- name: Restart grafana after changes are applied
-#  ansible.builtin.copy:
-#    src: main.json
-#    dest: /etc/grafana/grafana.ini
-#  notify: Restart grafana
