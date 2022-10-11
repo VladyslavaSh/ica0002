@@ -4,14 +4,25 @@
     roles:
       - init
       - node_exporter
-      - nginx_exporter
+#      - mysql_exporter
+#      - bind_exporter
+#      - nginx_exporter
     become: yes
 
   - name: Prometheus monitoring
-    hosts: prometheus_servers
+    hosts: prometheus
     gather_facts: no
     roles:
       - prometheus
+    become: yes
+
+  - name: Grafana
+    hosts: grafana
+    roles:
+      - grafana
+      - mysql_exporter
+      - bind_exporter
+      - nginx_exporter
     become: yes
 
   - name: DNS server

@@ -1,11 +1,14 @@
 - name: Install MySQL Exporter
   ansible.builtin.apt:
-    name: mysqld_exporter
+    name: prometheus-mysqld-exporter
     state: present
 
-- name: Restart mysql_exporter when changes are applied
+- name: Copy .my.cnf template to conf path
   ansible.builtin.template:
-    src: config.my-cnf
-    dest: ~/.my.cnf
+    src: .my.cnf.j2
+    dest: /etc/.mysqld_exporter.cnf
+    mode: 0600
+    owner: prometheus
+    group: prometheus
   notify: Daemon reload
   notify: Restart mysql_exporter

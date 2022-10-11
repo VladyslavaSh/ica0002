@@ -3,3 +3,15 @@ node_memory_Active_bytes/node_memory_MemTotal_bytes*100
 
 # Average CPU load
 100 - (rate(node_cpu_seconds_total{mode="idle"}[5m]))*100
+
+1 - node_cpu_seconds_total{mode=“idle”}
+1 - rate(node_cpu_seconds_total{mode=“idle”}[1m])
+
+# Bind9 Status
+bind_up
+
+# MySQL Status
+mysql_up
+
+# Nginx Statust 
+nginx_up
