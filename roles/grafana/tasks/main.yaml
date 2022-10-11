@@ -10,7 +10,12 @@
   ansible.builtin.apt:
     name: grafana
     state: present
-  notify: Start grafana
+
+- name: Start grafana
+  ansible.builtin.service:
+    name: grafana-server
+    state: started
+    enabled: yes
 
 #- name: Restart grafana after changes are applied
 #  ansible.builtin.copy:

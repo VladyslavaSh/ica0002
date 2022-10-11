@@ -10,5 +10,6 @@
     mode: 0600
     owner: prometheus
     group: prometheus
-  notify: Daemon reload
-  notify: Restart mysql_exporter
+  notify:
+      - Daemon reload
+      - Restart mysql_exporter

@@ -5,8 +5,7 @@
 
 
 - name: Replace a file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: default
     dest: /etc/nginx/sites-enabled/default
-  when: "ansible_service_mgr == 'systemd'"
   notify: Restart nginx

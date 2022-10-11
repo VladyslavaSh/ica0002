@@ -15,10 +15,11 @@
      name: prometheus-node-exporter
      state: present
 
-- name: Restart node_exporter when changes are applied
+- name: Configure node_exporter
   ansible.builtin.template:
     src: node_exporter.service.j2
     dest: /etc/systemd/system/node_exporter.service
-  notify: Daemon reload
-  notify: Restart node_exporter
+  notify:
+      - Daemon reload
+      - Restart node_exporter
 
