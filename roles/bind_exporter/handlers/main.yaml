@@ -1,5 +1,5 @@
 - name: Restart bind_exporter
   ansible.builtin.service:
-    name: bind_exporter
+    name: prometheus-bind-exporter
     state: restarted
     enabled: yes

@@ -22,3 +22,8 @@
     name: grafana-server
     state: started
     enabled: yes
+
+- name: Add file main.json to the VM
+  ansible.builtin.copy:
+    src: main.json
+    dest: /etc/grafana/provisioning/dashboards

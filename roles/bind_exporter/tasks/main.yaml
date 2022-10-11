@@ -5,6 +5,6 @@
 
 #- name: Add configuration file
 #  ansible.builtin.template:
-#     dest: 
-#     src: 
+#     dest: /etc/default/prometheus-bind-exporter
+#     src: prometheus-bind-exporter
 #  notify: Restart bind_exporter

@@ -5,9 +5,6 @@
     roles:
       - init
       - node_exporter
-#      - mysql_exporter
-#      - bind_exporter
-#      - nginx_exporter
     become: yes
 
   - name: DNS server
@@ -36,9 +33,6 @@
     hosts: grafana
     roles:
       - grafana
-#      - mysql_exporter
-#      - bind_exporter
-#      - nginx_exporter
     become: yes
 
   - name: Database server
@@ -57,5 +51,6 @@
       - agama
       - uwsgi
       - nginx
+      - nginx_exporter
     become: yes
 
