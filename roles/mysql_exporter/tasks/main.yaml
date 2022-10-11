@@ -6,7 +6,7 @@
 - name: Copy .my.cnf template to conf path
   ansible.builtin.template:
     src: .my.cnf.j2
-    dest: /etc/.mysqld_exporter.cnf
+    dest: /var/lib/prometheus
     mode: 0600
     owner: prometheus
     group: prometheus

@@ -3,3 +3,9 @@
     name: grafana
     state: restarted
     enabled: yes
+
+- name: Start grafana
+  ansible.builtin.service:
+    name: grafana
+    state: started
+    enabled: yes

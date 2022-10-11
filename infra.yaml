@@ -1,4 +1,5 @@
 ---
+
   - name: Init
     hosts: all
     roles:
@@ -7,6 +8,21 @@
 #      - mysql_exporter
 #      - bind_exporter
 #      - nginx_exporter
+    become: yes
+
+  - name: DNS server
+    hosts: dns_servers
+    gather_facts: no
+    roles:
+      - bind
+      - bind_exporter
+    become: yes
+
+  - name: Resolver
+    hosts: all
+    gather_facts: no
+    roles:
+      - resolver
     become: yes
 
   - name: Prometheus monitoring
@@ -20,23 +36,9 @@
     hosts: grafana
     roles:
       - grafana
-      - mysql_exporter
-      - bind_exporter
-      - nginx_exporter
-    become: yes
-
-  - name: DNS server
-    hosts: dns_servers
-    gather_facts: no
-    roles:
-      - bind
-    become: yes
-
-  - name: Resolver
-    hosts: all
-    gather_facts: no
-    roles:
-      - resolver
+#      - mysql_exporter
+#      - bind_exporter
+#      - nginx_exporter
     become: yes
 
   - name: Database server
@@ -44,6 +46,7 @@
     gather_facts: no
     roles:
       - mysql
+      - mysql_exporter
     become: yes
 
   - name: Web Servers
