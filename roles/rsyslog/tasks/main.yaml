@@ -1,0 +1,11 @@
+- name: Install rsyslog
+  ansible.builtin.apt:
+     name: rsyslog
+     state: present
+
+
+- name: Update rsyslog configuration file
+  ansible.builtin.template:
+    src: rsyslog.conf
+    dest: /etc/rsyslog.conf
+  notify: Restart rsyslog

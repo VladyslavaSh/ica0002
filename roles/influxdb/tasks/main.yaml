@@ -1,0 +1,38 @@
+- name: Import InfluxDB GPG signing key
+  ansible.builtin.apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+- name: Add InfluxDB repository
+  ansible.builtin.apt_repository:
+    repo: 'deb https://repos.influxdata.com/ubuntu trusty stable'
+    state: present
+
+
+#- name: Download InfluxDB package
+#  ansible.builtin.get_url:
+#    url: https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb
+#    dest: 
+
+- name: Install InfluxDB
+  ansible.builtin.apt:
+    name: influxdb
+    state: present
+
+
+- name: Install Telegraf
+  ansible.builtin.apt:
+    name: telegraf
+    state: present
+
+- name: Update Telegraf config file
+  ansible.builtin.template:
+    src: telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+  notify: Restart Telegraf
+
+- name: Update InfluxDB config
+  ansible.builtin.template:
+    src: influxdb.conf
+    dest: /etc/influxdb/influxdb.conf
+  notify: Restart InfluxDB

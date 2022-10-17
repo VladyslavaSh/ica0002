@@ -3,7 +3,7 @@
     name: prometheus-nginx-exporter
 
 #- name: Restart exporter when changes are applied
-#  ansible.builtin.copy:
-#     src: 
-#     dest: 
+#  ansible.builtin.template:
+#     src: prometheus-nginx-exporter.service.j2
+#     dest: /lib/systemd/system/prometheus-nginx-exporter.service
 #  notify: Restart nginx-prometheus-exporter

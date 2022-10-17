@@ -1,0 +1,9 @@
+- name: Download InfluxDB exporter package
+  ansible.builtin.get_url:
+    url: https://github.com/carlpett/influxdb_stats_exporter/releases/download/v0.1.1/influx_stats_exporter_linux_amd64
+    dest: /usr/local/bin/
+
+#- name: Install InfluxDB exporter
+#  ansible.builtin.apt:
+#    name: influxdb_stats_exporter
+#    state: present

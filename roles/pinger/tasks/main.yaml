@@ -1,0 +1,15 @@
+- name: Upload pinger.sh file
+  ansible.builtin.template:
+    src: pinger.sh
+    dest: /usr/local/bin/pinger
+
+#- name: Upload pinger.service file
+#  ansible.builtin.template:
+#       src: pinger.service
+#       dest:
+#  notify: Daemon reload
+
+- name: Upload pinger configuration file
+  ansible.builtin.template:
+    src: pinger.conf
+    dest: /etc/pinger/pinger.conf

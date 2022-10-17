@@ -14,4 +14,9 @@ server {
                 proxy_pass http://localhost:3000;
         }
 {% endif %}
+
+         location /stub_status {
+                stub_status;
+        }
 }
+
