@@ -46,7 +46,7 @@
     hosts: influxdb
     roles:
       - influxdb
-      - influxdb_exporter
+#      - influxdb_exporter
 #      - pinger
     become: yes
 

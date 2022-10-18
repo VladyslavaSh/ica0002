@@ -3,6 +3,12 @@
     name: mysql-server
     state: present
 
+- name: Install PyMysql
+  ansible.builtin.apt:
+    name: python3-pymysql
+    state: present
+
+
 - name: Restart mysql when changes are applied
   ansible.builtin.copy:
      src: override.cnf

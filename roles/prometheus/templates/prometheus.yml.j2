@@ -71,3 +71,10 @@ scrape_configs:
         {% for vm in groups['db_servers'] %}
         - {{ vm }}:9104
         {% endfor %}
+
+  - job_name: 'influxdb'
+    static_configs:
+      - targets:
+        {% for vm in groups['web_servers'] %}
+        - {{ vm }}:9122
+        {% endfor %}
