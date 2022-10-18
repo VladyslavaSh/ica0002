@@ -18,8 +18,16 @@ server {
         }
 {% endif %}
 
-         location /stub_status {
+}
+
+
+
+server {
+        listen 127.0.0.1:8080 default_server;
+        server_name _;
+
+
+        location = /stub_status {
                 stub_status on;
         }
 }
-
