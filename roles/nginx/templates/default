@@ -7,9 +7,12 @@ server {
 		include uwsgi_params;
         }
 
+{% if inventory_hostname in groups['prometheus'] %}
         location /prometheus {
                 proxy_pass http://localhost:9090;               
         }
+{% endif %}
+
 
 {% if inventory_hostname in groups['grafana'] %}
         location /grafana {
@@ -19,8 +22,6 @@ server {
 {% endif %}
 
 }
-
-
 
 server {
         listen 127.0.0.1:8080 default_server;

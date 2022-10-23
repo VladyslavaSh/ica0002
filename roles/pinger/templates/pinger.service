@@ -1,6 +1,6 @@
 [Unit]
 Description=Pinger Service
-Documentation=<FIXME>
+Documentation=https://google.com
 After=network-online.target
 
 [Service]

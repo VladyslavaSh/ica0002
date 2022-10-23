@@ -34,20 +34,24 @@
     gather_facts: no
     roles:
       - prometheus
+      - nginx
+      - nginx_exporter
     become: yes
 
   - name: Grafana
     hosts: grafana
     roles:
       - grafana
+      - nginx
+      - nginx_exporter
     become: yes
 
   - name: InfluxDB
     hosts: influxdb
     roles:
       - influxdb
-#      - influxdb_exporter
-#      - pinger
+      - influxdb_exporter
+      - pinger
     become: yes
 
   - name: Database server

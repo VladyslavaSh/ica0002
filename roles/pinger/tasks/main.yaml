@@ -2,14 +2,25 @@
   ansible.builtin.template:
     src: pinger.sh
     dest: /usr/local/bin/pinger
+    mode: 0755
+  notify: Restart pinger
 
-#- name: Upload pinger.service file
-#  ansible.builtin.template:
-#       src: pinger.service
-#       dest:
-#  notify: Daemon reload
+- name: Upload pinger.service file
+  ansible.builtin.template:
+       src: pinger.service
+       dest: /etc/systemd/system/
+  notify:
+      - Daemon reload
+      - Restart pinger
+
+- name: Create a directory
+  ansible.builtin.file:
+    path: /etc/pinger
+    state: directory
+
 
 - name: Upload pinger configuration file
   ansible.builtin.template:
     src: pinger.conf
     dest: /etc/pinger/pinger.conf
+  notify: Restart pinger

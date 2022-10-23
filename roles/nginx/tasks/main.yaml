@@ -8,4 +8,6 @@
   ansible.builtin.template:
     src: default
     dest: /etc/nginx/sites-enabled/default
-  notify: Restart nginx
+  notify:
+     - Restart nginx
+     - Restart prometheus-nginx-exporter

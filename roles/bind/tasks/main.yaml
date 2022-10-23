@@ -14,10 +14,11 @@
      src: named.conf.local.j2
   notify: Restart Bind9
 
-- name: Add DNS file
+- name: Add zone file
   ansible.builtin.template:
      dest: /var/lib/bind/db.vlada.vld
      src: db.vlada.vld.j2
+  notify: Restart Bind9
 
 #- name: Check collected variables
 #  ansible.builtin.debug:

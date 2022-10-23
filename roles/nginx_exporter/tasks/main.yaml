@@ -1,4 +1,4 @@
-- name: Install nginx-prometheus-exporter
+- name: Install prometheus exporter
   ansible.builtin.apt:
     name: prometheus-nginx-exporter
 

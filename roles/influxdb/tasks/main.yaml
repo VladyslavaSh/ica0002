@@ -19,7 +19,6 @@
     name: influxdb
     state: present
 
-
 - name: Install Telegraf
   ansible.builtin.apt:
     name: telegraf
@@ -36,3 +35,9 @@
     src: influxdb.conf
     dest: /etc/influxdb/influxdb.conf
   notify: Restart InfluxDB
+
+- name: Start InfluxDB
+  ansible.builtin.service:
+    name: influxdb
+    state: started
+    enabled: yes
