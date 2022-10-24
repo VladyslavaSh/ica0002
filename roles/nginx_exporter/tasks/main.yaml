@@ -1,9 +1,15 @@
-- name: Install prometheus exporter
+- name: Install Nginx exporter
   ansible.builtin.apt:
     name: prometheus-nginx-exporter
 
-#- name: Restart exporter when changes are applied
-#  ansible.builtin.template:
-#     src: prometheus-nginx-exporter.service.j2
-#     dest: /lib/systemd/system/prometheus-nginx-exporter.service
-#  notify: Restart nginx-prometheus-exporter
+- name: Add nginx exporter service
+  ansible.builtin.template:
+     src: prometheus-nginx-exporter.service.j2
+     dest: /etc/systemd/system/prometheus-nginx-exporter.service
+  notify: Restart prometheus-nginx-exporter
+
+- name: Start Nginx exporter
+  ansible.builtin.service:
+    name: prometheus-nginx-exporter
+    state: started
+    enabled: yes

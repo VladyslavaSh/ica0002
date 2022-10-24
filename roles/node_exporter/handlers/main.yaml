@@ -2,7 +2,7 @@
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: Restart node_exporter
+- name: Restart prometheus-node-exporter
   ansible.builtin.service:
     name: prometheus-node-exporter
     state: restarted

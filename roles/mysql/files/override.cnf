@@ -1,3 +1,2 @@
-
 [mysqld]
-bind-address = 192.168.43.25
+bind-address = 0.0.0.0

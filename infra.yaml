@@ -14,6 +14,7 @@
       - bind
       - bind_exporter
     become: yes
+    tags: d
 
   - name: Resolver
     hosts: all
@@ -21,6 +22,7 @@
     roles:
       - resolver
     become: yes
+    tags: d
 
   - name: Rsyslog logging
     hosts: rsyslog
@@ -37,6 +39,7 @@
       - nginx
       - nginx_exporter
     become: yes
+    tags: p
 
   - name: Grafana
     hosts: grafana
@@ -45,6 +48,7 @@
       - nginx
       - nginx_exporter
     become: yes
+    tags: g
 
   - name: InfluxDB
     hosts: influxdb
@@ -53,6 +57,7 @@
       - influxdb_exporter
       - pinger
     become: yes
+    tags: i
 
   - name: Database server
     hosts: db_servers
@@ -61,6 +66,7 @@
       - mysql
       - mysql_exporter
     become: yes
+    tags: m
 
   - name: Web Servers
     hosts: web_servers
@@ -72,4 +78,4 @@
       - nginx
       - nginx_exporter
     become: yes
-
+    tags: w

@@ -4,8 +4,7 @@
      state: stopped
      enabled: no
 
-
-- name: Move resolv.conf
+- name: Copy resolv.conf
   ansible.builtin.template:
      dest: /etc/resolv.conf
      src: resolv.conf

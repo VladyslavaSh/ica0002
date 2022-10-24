@@ -10,16 +10,22 @@
 #    remote_src: yes
 #    validate_certs: no
 
-- name: Install Node Exporters
+- name: Install Node exporter
   ansible.builtin.apt:
      name: prometheus-node-exporter
      state: present
 
-- name: Configure node_exporter
+
+- name: Configure Node exporter
   ansible.builtin.template:
     src: node_exporter.service.j2
     dest: /etc/systemd/system/node_exporter.service
   notify:
       - Daemon reload
-      - Restart node_exporter
+      - Restart prometheus-node-exporter
 
+- name: Start Node exporter
+  ansible.builtin.service:
+    name: prometheus-node-exporter
+    state: started
+    enabled: yes

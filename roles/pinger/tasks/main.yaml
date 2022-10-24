@@ -13,14 +13,20 @@
       - Daemon reload
       - Restart pinger
 
-- name: Create a directory
+- name: Create a directory for pinger config file
   ansible.builtin.file:
     path: /etc/pinger
     state: directory
-
+    mode: 0755
 
 - name: Upload pinger configuration file
   ansible.builtin.template:
     src: pinger.conf
     dest: /etc/pinger/pinger.conf
   notify: Restart pinger
+
+- name: Start pinger
+  ansible.builtin.service:
+    name: pinger
+    state: started
+    enabled: yes

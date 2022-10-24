@@ -2,19 +2,19 @@
   ansible.builtin.apt:
     name: bind9
 
-- name: Add named.conf.options file
+- name: Copy named.conf.options file
   ansible.builtin.template:
      dest: /etc/bind/named.conf.options
      src: named.conf.options.j2
   notify: Restart Bind9
 
-- name: Add named.conf.local file
+- name: Copy named.conf.local file
   ansible.builtin.template:
      dest: /etc/bind/named.conf.local
      src: named.conf.local.j2
   notify: Restart Bind9
 
-- name: Add zone file
+- name: Copy zone file
   ansible.builtin.template:
      dest: /var/lib/bind/db.vlada.vld
      src: db.vlada.vld.j2
@@ -25,3 +25,9 @@
 #     var:
 #     - vm1
 #     - vm2
+
+- name: Start Bind9
+  ansible.builtin.service:
+    name: bind9
+    state: started
+    enabled: yes

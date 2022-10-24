@@ -6,18 +6,18 @@
   ansible.builtin.apt_repository:
     repo: deb https://packages.grafana.com/oss/deb stable main
 
-- name: Install grafana
+- name: Install Grafana
   ansible.builtin.apt:
     name: grafana
     state: present
 
-- name: Restart grafana after changes are applied
+- name: Copy grafana.ini file
   ansible.builtin.template:
     src: grafana.ini
     dest: /etc/grafana/grafana.ini
   notify: Restart grafana
 
-- name: Start grafana
+- name: Start Grafana
   ansible.builtin.service:
     name: grafana-server
     state: started

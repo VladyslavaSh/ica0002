@@ -3,7 +3,7 @@
     daemon_reload: yes
 
 
-- name: Restart mysql_exporter
+- name: Restart prometheus-mysqld-exporter
   ansible.builtin.service:
     name: prometheus-mysqld-exporter
     state: restarted

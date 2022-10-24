@@ -9,3 +9,10 @@
     src: rsyslog.conf
     dest: /etc/rsyslog.conf
   notify: Restart rsyslog
+
+
+- name: Start rsyslog
+  ansible.builtin.service:
+    name: rsyslog
+    state: started
+    enabled: yes

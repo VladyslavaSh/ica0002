@@ -7,4 +7,10 @@
 #  ansible.builtin.template:
 #     dest: /etc/default/prometheus-bind-exporter
 #     src: prometheus-bind-exporter
-#  notify: Restart bind_exporter
+#  notify: Restart prometheus-bind-exporter
+
+- name: Start Bind9 exporter
+  ansible.builtin.service:
+    name: prometheus-bind-exporter
+    state: started
+    enabled: yes

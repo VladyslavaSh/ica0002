@@ -1,11 +1,6 @@
-- name: update and install prometheus
+- name: Install Prometheus
   ansible.builtin.apt:
     name: prometheus
-    state: present
-
-- name: Install nginx
-  ansible.builtin.apt:
-    name: nginx
     state: present
 
 - name: Replace a file
@@ -25,3 +20,9 @@
     src: prometheus.j2
     dest: /etc/default/prometheus
   notify: Restart Prometheus
+
+- name: Start Prometheus
+  ansible.builtin.service:
+    name: prometheus
+    state: started
+    enabled: yes

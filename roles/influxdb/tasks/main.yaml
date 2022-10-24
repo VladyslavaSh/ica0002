@@ -8,7 +8,6 @@
     repo: 'deb https://repos.influxdata.com/ubuntu trusty stable'
     state: present
 
-
 #- name: Download InfluxDB package
 #  ansible.builtin.get_url:
 #    url: https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb
@@ -39,5 +38,11 @@
 - name: Start InfluxDB
   ansible.builtin.service:
     name: influxdb
+    state: started
+    enabled: yes
+
+- name: Start Telegraf
+  ansible.builtin.service:
+    name: telegraf
     state: started
     enabled: yes
