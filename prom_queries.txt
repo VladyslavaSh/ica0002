@@ -7,11 +7,26 @@ node_memory_Active_bytes/node_memory_MemTotal_bytes*100
 1 - node_cpu_seconds_total{mode=“idle”}
 1 - rate(node_cpu_seconds_total{mode=“idle”}[1m])
 
+
 # Bind9 Status
 bind_up
+# Amount of DNS queries per minute
+bind_resolver_queries_total
+
 
 # MySQL Status
 mysql_up
+# Amount of selects per minute
+mysql_global_status_commands_total
 
-# Nginx Statust 
+
+# Nginx Status 
 nginx_up
+# Amount of requests per minute
+nginx_http_requests_total
+
+
+# InfluxDB health
+influxdb_exporter_stats_query_success
+# InfluxDB write rate
+influxdb_write_write_ok

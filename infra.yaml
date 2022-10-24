@@ -5,7 +5,9 @@
     roles:
       - init
       - node_exporter
+      - backup
     become: yes
+    tags: s
 
   - name: DNS server
     hosts: dns_servers
