@@ -23,7 +23,17 @@
     state: started
     enabled: yes
 
-- name: Add file main.json to the VM
+- name: Add dashboards
   ansible.builtin.copy:
     src: main.json
+    dest: /etc/grafana/provisioning/dashboards
+
+- name: Add data sources
+  ansible.builtin.copy:
+    src: datasources.yaml
+    dest: /etc/grafana/provisioning/datasources
+
+- name: Add providers
+  ansible.builtin.copy:
+    src: providers.yaml
     dest: /etc/grafana/provisioning/dashboards

@@ -1,7 +1,7 @@
 - name: Create directory for app installation
   ansible.builtin.file:
     path: /opt/agama
-#    owner: agama
+    owner: agama
     state: directory
     mode: 0755
 
@@ -9,7 +9,7 @@
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/hudolejev/agama/master/agama.py
     dest: /opt/agama
-#    mode: 0755
+    mode: 0755
 
 - name: Install packages
   ansible.builtin.apt:
