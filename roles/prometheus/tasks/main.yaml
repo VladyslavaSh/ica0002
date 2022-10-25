@@ -1,3 +1,7 @@
+- name: Create user prometheus
+  ansible.builtin.user:
+    name: prometheus
+
 - name: Install Prometheus
   ansible.builtin.apt:
     name: prometheus

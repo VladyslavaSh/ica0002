@@ -76,5 +76,5 @@ scrape_configs:
     static_configs:
       - targets:
         {% for vm in groups['web_servers'] %}
-        - {{ vm }}:9122
+        - {{ vm }}:9424
         {% endfor %}

@@ -12,4 +12,4 @@ vlada.vld.	IN	NS	VladyslavaSh-1
 {{ vm2 }}       IN      A       {{ hostvars['VladyslavaSh-2']['ansible_default_ipv4']['address'] }}
 
 influxdb        IN      CNAME   {{ groups['influxdb'][0] }}
-backup.{{ startup_name }}         IN      A       {{ backup_server }}
+backup.{{ startup_name }}         IN      A       {{ backup_server_ip }}

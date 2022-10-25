@@ -24,7 +24,7 @@
     roles:
       - resolver
     become: yes
-    tags: d
+    tags: s
 
   - name: Rsyslog logging
     hosts: rsyslog
@@ -32,13 +32,14 @@
     roles:
       - rsyslog
     become: yes
+    tags: i
 
   - name: Prometheus monitoring
     hosts: prometheus
     gather_facts: no
     roles:
-      - prometheus
       - nginx
+      - prometheus
       - nginx_exporter
     become: yes
     tags: p

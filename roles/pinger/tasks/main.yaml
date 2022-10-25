@@ -1,3 +1,7 @@
+- name: Create pinger user
+  ansible.builtin.user:
+    name: pinger
+
 - name: Upload pinger.sh file
   ansible.builtin.template:
     src: pinger.sh
