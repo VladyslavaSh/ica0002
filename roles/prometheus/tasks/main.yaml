@@ -1,6 +1,11 @@
-- name: Create user prometheus
-  ansible.builtin.user:
+- name: Install Prometheus
+  ansible.builtin.apt:
     name: prometheus
+    state: present
+
+#- name: Create user prometheus
+#  ansible.builtin.user:
+#    name: prometheus
 
 - name: Prometheus configuration file
   ansible.builtin.template:

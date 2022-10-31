@@ -1,0 +1,5 @@
+10 21 * * *     backup   influxd backup -portable /home/backup/influxdb/
+11 21 * * *     backup   duplicity --no-encryption full /home/backup/influxdb/ rsync://VladyslavaSh@backup.vlada.vld/influxdb
+11 21 * * 1-6   backup   duplicity --no-encryption incremental /home/backup/influxdb/ rsync://VladyslavaSh@backup.vlada.vld/influxdb
+
+# duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld/mysql /home/backup/restore/influxdb

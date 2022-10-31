@@ -12,3 +12,31 @@
     dest: /home/backup/.ssh/known_hosts
     owner: backup
     group: backup
+
+- name: Create mysql directory
+  ansible.builtin.file:
+    path: /home/backup/mysql
+    state: directory
+    owner: backup
+    group: backup
+    mode: '0744'
+
+- name: Create influxdb directory
+  ansible.builtin.file:
+    path: /home/backup/influxdb
+    state: directory
+    owner: backup
+    group: backup
+    mode: '0744'
+
+- name: Create restore directory
+  ansible.builtin.file:
+    path: /home/backup/restore
+    state: directory
+    owner: backup
+    group: backup
+    mode: '0744'
+
+- name: Install duplicity
+  ansible.builtin.apt:
+    name: duplicity

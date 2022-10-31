@@ -6,10 +6,11 @@ $TTL	604800
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-vlada.vld.	IN	NS	VladyslavaSh-1
+{{ startup_name }}.	IN	NS	VladyslavaSh-1
 
 {{ vm1 }}       IN      A       {{ hostvars['VladyslavaSh-1']['ansible_default_ipv4']['address'] }}
 {{ vm2 }}       IN      A       {{ hostvars['VladyslavaSh-2']['ansible_default_ipv4']['address'] }}
 
 influxdb        IN      CNAME   {{ groups['influxdb'][0] }}
-backup.{{ startup_name }}         IN      A       {{ backup_server_ip }}
+
+backup.{{ startup_name }}.         IN      A       {{ backup_server_ip }}
