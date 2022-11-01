@@ -6,6 +6,7 @@ datasources:
     # proxy or direct (Server or Browser in the UI)
     access: proxy
     isDefault: true
+    uid: "prometheusUID"
     url: http://VladyslavaSh-2:9090/prometheus
 
   - name: InfluxDB:latency
