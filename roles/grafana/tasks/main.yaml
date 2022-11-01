@@ -23,10 +23,15 @@
     state: started
     enabled: yes
 
-- name: Add dashboards
+- name: Create a directory for dashboards
+  ansible.builtin.file:
+    path: /var/lib/grafana/dashboards
+    state: directory
+
+- name: Add Main dashboard
   ansible.builtin.copy:
     src: main.json
-    dest: /etc/grafana/provisioning/dashboards
+    dest: /var/lib/grafana/dashboards
 
 - name: Add data sources
   ansible.builtin.copy:
