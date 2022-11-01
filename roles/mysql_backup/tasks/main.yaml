@@ -1,10 +1,10 @@
-#- name: Create MySQL backup user
-#  ansible.builtin.user:
-#    name: backup
-#    password: "{{ mysql_backup_password }}"
-#    host: "%"
-#    login_unix_socket: /var/run/mysqld/mysqld.sock
-#    priv: "{{ mysql_database }}.*:LOCK TABLES,SELECT"
+- name: Create MySQL backup user
+  community.mysql.mysql_user:
+    name: backup
+    password: "{{ mysql_backup_password }}"
+    host: "%"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    priv: "{{ mysql_database }}.*:LOCK TABLES,SELECT"
 
 - name: Upload MySQL config file
   ansible.builtin.template:
@@ -13,11 +13,6 @@
     owner: backup
     group: backup
     mode: '700'
-
-- name: Create a Cron directory
-  ansible.builtin.file:
-    path: /etc/cron.d
-    state: directory
 
 - name: Add a Cron tab file
   ansible.builtin.template:
