@@ -1,4 +1,4 @@
-- name: Add a Cron tab file
+- name: Add an InfluxDB cron tab
   ansible.builtin.template:
     src: influxdb-backup
     dest: /etc/cron.d/influxdb-backup

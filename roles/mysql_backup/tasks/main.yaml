@@ -14,7 +14,7 @@
     group: backup
     mode: '700'
 
-- name: Add a Cron tab file
+- name: Add a MySQL cron tab file
   ansible.builtin.template:
     src: mysql-backup
     dest: /etc/cron.d/mysql-backup
