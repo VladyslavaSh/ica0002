@@ -1,4 +1,4 @@
-Backup coverage:
+## Backup coverage
 
 - Database servers backup
 - InfluxDB backup
@@ -6,28 +6,28 @@ Backup coverage:
 
 
 
-RPO (Recovery point objective):
+## RPO (Recovery point objective)
 
 RPO is the acceptable amount of data that can be lost in the event of a failure. 
 
-- Database servers:
+- MySQL:
 - InfluxDB: 
-- Ansible repository: 
 
 
 
-Versioning and retention -- how many backup versions are stored and for how long
+## Versioning and retention
+Versioning and retention describe how many backup versions are stored and for how long.
 
 
+## Usability checks
+Usability checks describe how is backup usability verified.
 
-Usability checks -- how is backup usability verified
 
-
-Restoration criteria:
+## Restoration criteria
 The backup will be restored in cases such as server failure, data loss, need to return to the original server.
 
 
-RTO (Recovery time objective):
+## RTO (Recovery time objective):
 
 RTO is the time required to restore the system to an operational state after a failure.
 

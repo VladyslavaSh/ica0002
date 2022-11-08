@@ -30,3 +30,15 @@ nginx_http_requests_total
 influxdb_exporter_stats_query_success
 # InfluxDB write rate
 influxdb_write_write_ok
+
+# MySQL server IDs
+mysql_global_variables_server_id
+
+# MySQL server read only status
+mysql_global_variables_read_only
+
+# MySQL replication IO thread
+mysql_slave_status_slave_io_running
+
+# MySQL replication SQL thread
+mysql_slave_status_slave_sql_running

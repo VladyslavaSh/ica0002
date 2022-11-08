@@ -36,4 +36,5 @@ duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld//home/Vl
 service telegraf stop
 influx -execute 'DROP DATABASE telegraf'
 influxd restore -portable /home/backup/restore/influxdb
+service telegraf start
 ```

@@ -15,7 +15,7 @@
       - bind
       - bind_exporter
     become: yes
-    tags: d
+    tags: b
 
   - name: Resolver
     hosts: all
@@ -70,7 +70,9 @@
       - mysql_exporter
       - mysql_backup
     become: yes
-    tags: m
+    tags:
+      - m
+      - dw
 
   - name: Web Servers
     hosts: web_servers
@@ -82,4 +84,6 @@
       - nginx
       - nginx_exporter
     become: yes
-    tags: w
+    tags:
+      - w
+      - dw
