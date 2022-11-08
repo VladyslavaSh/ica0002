@@ -14,7 +14,7 @@ su - backup
 
 ## MySQL backup restoration
 
-#### As a backup user ownload the MySQL backup:
+#### As a backup user download the MySQL backup:
 ```
 duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/mysql /home/backup/restore/mysql
 ```

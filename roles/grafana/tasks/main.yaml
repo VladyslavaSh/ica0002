@@ -43,6 +43,11 @@
     src: providers.yaml
     dest: /etc/grafana/provisioning/dashboards
 
+- name: Add Syslog dashboard
+  ansible.builtin.copy:
+    src: syslog.json
+    dest: /var/lib/grafana/dashboards
+
 - name: Add MySQL dashboard
   ansible.builtin.copy:
     src: mysql.json

@@ -10,6 +10,10 @@
     dest: /etc/rsyslog.conf
   notify: Restart rsyslog
 
+- name: Add file with a target address for logs
+  ansible.builtin.template:
+     src: 50-telegraf.conf
+     dest: /etc/rsyslog.d/50-telegraf.conf
 
 - name: Start rsyslog
   ansible.builtin.service:
