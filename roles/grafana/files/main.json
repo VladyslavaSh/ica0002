@@ -28,7 +28,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -69,7 +70,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 24,
         "x": 0,
         "y": 0
@@ -89,7 +90,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.2",
+      "pluginVersion": "9.3.0-beta1",
       "targets": [
         {
           "datasource": {
@@ -97,7 +98,7 @@
           },
           "editorMode": "builder",
           "expr": "bind_up",
-          "legendFormat": "__auto",
+          "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
         },
@@ -108,7 +109,7 @@
           "editorMode": "builder",
           "expr": "nginx_up",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{instance}}",
           "range": true,
           "refId": "B"
         },
@@ -117,20 +118,9 @@
             "type": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "mysql_up",
-          "hide": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "editorMode": "builder",
           "expr": "influxdb_exporter_stats_query_success",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{instance}}",
           "range": true,
           "refId": "D"
         }
@@ -198,7 +188,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 5
+        "y": 4
       },
       "id": 10,
       "options": {
@@ -288,7 +278,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 5
+        "y": 4
       },
       "id": 8,
       "options": {
@@ -378,7 +368,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 13
+        "y": 12
       },
       "id": 12,
       "options": {
@@ -469,7 +459,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 13
+        "y": 12
       },
       "id": 6,
       "options": {
@@ -560,7 +550,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 20
       },
       "id": 2,
       "options": {
@@ -651,7 +641,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 21
+        "y": 20
       },
       "id": 4,
       "options": {
@@ -690,13 +680,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Main",
   "uid": "z4asy9HVk",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }

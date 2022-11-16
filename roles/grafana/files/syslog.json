@@ -1,74 +1,45 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "7.4.0"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "Telegraf / InfluxDB / Grafana as syslog receiver",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 12433,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1616092347593,
+  "id": 5,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "aliasColors": {},
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
-      "decimals": 0,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "influxdb",
+        "uid": "PF877F614BFD14DDB"
       },
+      "decimals": 0,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -88,8 +59,6 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sort": null,
-        "sortDesc": null,
         "total": true,
         "values": true
       },
@@ -101,7 +70,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "9.2.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -148,6 +117,10 @@
       "targets": [
         {
           "alias": "Info",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -215,6 +188,10 @@
         },
         {
           "alias": "Notice",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -282,6 +259,10 @@
         },
         {
           "alias": "Warning",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -349,6 +330,10 @@
         },
         {
           "alias": "Error",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -416,6 +401,10 @@
         },
         {
           "alias": "Critical",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -483,6 +472,10 @@
         },
         {
           "alias": "Alert",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -550,6 +543,10 @@
         },
         {
           "alias": "Emergency",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -617,9 +614,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "syslog count",
       "tooltip": {
         "shared": true,
@@ -628,9 +623,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -640,26 +633,23 @@
           "format": "none",
           "label": "Messages / min",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "PF877F614BFD14DDB"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -669,7 +659,8 @@
           "custom": {
             "align": "left",
             "displayMode": "auto",
-            "filterable": false
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -717,68 +708,33 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 0,
-                    "text": "Debug",
-                    "to": "",
-                    "type": 1,
-                    "value": "7"
-                  },
-                  {
-                    "from": "",
-                    "id": 1,
-                    "text": "Info",
-                    "to": "",
-                    "type": 1,
-                    "value": "6"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "Notice",
-                    "to": "",
-                    "type": 1,
-                    "value": "5"
-                  },
-                  {
-                    "from": "",
-                    "id": 3,
-                    "text": "Warning",
-                    "to": "",
-                    "type": 1,
-                    "value": "4"
-                  },
-                  {
-                    "from": "",
-                    "id": 4,
-                    "text": "Error",
-                    "to": "",
-                    "type": 1,
-                    "value": "3"
-                  },
-                  {
-                    "from": "",
-                    "id": 5,
-                    "text": "Critical",
-                    "to": "",
-                    "type": 1,
-                    "value": "2"
-                  },
-                  {
-                    "from": "",
-                    "id": 6,
-                    "text": "Alert",
-                    "to": "",
-                    "type": 1,
-                    "value": "1"
-                  },
-                  {
-                    "from": "",
-                    "id": 7,
-                    "text": "Emergency",
-                    "to": "",
-                    "type": 1,
-                    "value": "0"
+                    "options": {
+                      "0": {
+                        "text": "Emergency"
+                      },
+                      "1": {
+                        "text": "Alert"
+                      },
+                      "2": {
+                        "text": "Critical"
+                      },
+                      "3": {
+                        "text": "Error"
+                      },
+                      "4": {
+                        "text": "Warning"
+                      },
+                      "5": {
+                        "text": "Notice"
+                      },
+                      "6": {
+                        "text": "Info"
+                      },
+                      "7": {
+                        "text": "Debug"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -838,6 +794,13 @@
       },
       "id": 12,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -846,9 +809,13 @@
           }
         ]
       },
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "9.2.4",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PF877F614BFD14DDB"
+          },
           "groupBy": [
             {
               "params": [
@@ -913,25 +880,28 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Syslog Messages",
       "type": "table"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 27,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "allValue": "",
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "PF877F614BFD14DDB"
+        },
         "definition": "SHOW TAG VALUES FROM syslog WITH KEY=appname",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Appname",
@@ -944,18 +914,22 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
         "allValue": "",
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "PF877F614BFD14DDB"
+        },
         "definition": "SHOW TAG VALUES FROM syslog WITH KEY=hostname",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Hostname",
@@ -968,18 +942,22 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
         "allValue": "",
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "PF877F614BFD14DDB"
+        },
         "definition": "SHOW TAG VALUES FROM syslog WITH KEY=severity",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Severity",
@@ -992,7 +970,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1004,7 +981,6 @@
           "value": ""
         },
         "description": "Querystring",
-        "error": null,
         "hide": 0,
         "label": "MessageQuery",
         "name": "Query",
@@ -1048,5 +1024,6 @@
   "timezone": "",
   "title": "Syslog",
   "uid": "TIYeHqRgZ",
-  "version": 7
+  "version": 1,
+  "weekStart": ""
 }

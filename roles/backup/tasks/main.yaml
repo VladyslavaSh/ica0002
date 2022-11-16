@@ -4,8 +4,6 @@
     home: /home/backup
     shell: /bin/bash
     generate_ssh_key: yes
-    ssh_key_bits: 2048
-    ssh_key_file: /home/backup/.ssh/id_rsa.pub
 
 - name: Move file with known hosts
   ansible.builtin.template:

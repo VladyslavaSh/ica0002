@@ -3,8 +3,10 @@ server {
 	server_name _;
 
 	location / {
-		uwsgi_pass localhost:5000;
-		include uwsgi_params;
+		#uwsgi_pass localhost:5000;
+		#include uwsgi_params;
+                proxy_set_header Host $http_host;
+                proxy_pass http://localhost:{{ agama_port }};
         }
 
 {% if inventory_hostname in groups['prometheus'] %}
@@ -17,7 +19,7 @@ server {
 {% if inventory_hostname in groups['grafana'] %}
         location /grafana {
                 proxy_set_header Host $http_host;
-                proxy_pass http://localhost:3000;
+                proxy_pass http://localhost:{{ grafana_port }};
         }
 {% endif %}
 
@@ -29,6 +31,6 @@ server {
 
 
         location = /stub_status {
-                stub_status on;
+                stub_status;
         }
 }

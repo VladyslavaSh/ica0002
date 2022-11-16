@@ -1,6 +1,8 @@
-0 21 * * *     backup   mysqldump agama > /home/backup/mysql/agama.sql
-1 21 * * *     backup   duplicity --no-encryption full /home/backup/mysql/ rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/mysql
-1 21 * * 1-6   backup   duplicity --no-encryption incremental /home/backup/mysql/ rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/mysql
+{% if inventory_hostname == mysql_backup_host %}
+10 21 * * *     backup   mysqldump agama > /home/backup/mysql/agama.sql
+11 21 * * *     backup   duplicity --no-encryption full /home/backup/mysql/ rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/mysql
+11 21 * * 1-6   backup   duplicity --no-encryption incremental /home/backup/mysql/ rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/mysql
+{% endif %}
 
 # duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/mysql /home/backup/restore/mysql
-# mysql agama < /home/backup/restore/agama.sql
+# mysql agama < /home/backup/restore/mysql/agama.sql

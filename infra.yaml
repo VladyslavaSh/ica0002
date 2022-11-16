@@ -46,6 +46,7 @@
   - name: Grafana
     hosts: grafana
     roles:
+      - docker
       - grafana
       - nginx
       - nginx_exporter
@@ -72,7 +73,7 @@
     become: yes
     tags:
       - m
-      - dw
+      - mx
 
   - name: Web Servers
     hosts: web_servers
@@ -80,10 +81,9 @@
     roles:
       - users
       - agama
-      - uwsgi
       - nginx
       - nginx_exporter
     become: yes
     tags:
       - w
-      - dw
+      - mx

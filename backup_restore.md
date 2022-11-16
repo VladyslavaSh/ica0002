@@ -21,7 +21,7 @@ duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld//home/Vl
 
 #### As a root user restore the MySQL backup:
 ```
-mysql agama < /home/backup/restore/agama.sql
+mysql agama < /home/backup/restore/mysql/agama.sql
 ```
 
 ## InfluxDB backup restoration
@@ -35,6 +35,6 @@ duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld//home/Vl
 ```
 service telegraf stop
 influx -execute 'DROP DATABASE telegraf'
-influxd restore -portable /home/backup/restore/influxdb
+influxd restore -portable -database telegraf /home/backup/restore/influxdb
 service telegraf start
 ```

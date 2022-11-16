@@ -1,54 +1,50 @@
-- name: Generate repository key
-  ansible.builtin.apt_key:
-    url: https://packages.grafana.com/gpg.key
-
-- name: Grafana repository
-  ansible.builtin.apt_repository:
-    repo: deb https://packages.grafana.com/oss/deb stable main
-
-- name: Install Grafana
-  ansible.builtin.apt:
-    name: grafana
-    state: present
+- name: Create a dashboard and datasources directories
+  ansible.builtin.file:
+    path: /opt/grafana/provisioning/{{ item }}
+    state: directory
+    recurse: yes
+  loop:
+    - dashboards
+    - datasources
 
 - name: Copy grafana.ini file
   ansible.builtin.template:
     src: grafana.ini
-    dest: /etc/grafana/grafana.ini
+    dest: /opt/grafana/grafana.ini
   notify: Restart grafana
-
-- name: Start Grafana
-  ansible.builtin.service:
-    name: grafana-server
-    state: started
-    enabled: yes
-
-- name: Create a directory for dashboards
-  ansible.builtin.file:
-    path: /var/lib/grafana/dashboards
-    state: directory
 
 - name: Add Main dashboard
   ansible.builtin.copy:
     src: main.json
-    dest: /var/lib/grafana/dashboards
-
-- name: Add data sources
-  ansible.builtin.copy:
-    src: datasources.yaml
-    dest: /etc/grafana/provisioning/datasources
-
-- name: Add providers
-  ansible.builtin.copy:
-    src: providers.yaml
-    dest: /etc/grafana/provisioning/dashboards
+    dest: /opt/grafana/provisioning/dashboards/main.json
 
 - name: Add Syslog dashboard
   ansible.builtin.copy:
     src: syslog.json
-    dest: /var/lib/grafana/dashboards
+    dest: /opt/grafana/provisioning/dashboards/syslog.json
 
 - name: Add MySQL dashboard
   ansible.builtin.copy:
     src: mysql.json
-    dest: /var/lib/grafana/dashboards
+    dest: /opt/grafana/provisioning/dashboards/mysql.json
+
+- name: Add file with dashboards paths
+  ansible.builtin.copy:
+    src: providers.yaml
+    dest: /opt/grafana/provisioning/dashboards
+  notify: Restart grafana
+
+- name: Add datasources
+  ansible.builtin.copy:
+    src: datasources.yaml
+    dest: /opt/grafana/provisioning/datasources
+  notify: Restart grafana
+
+- name: Grafana Docker container
+  community.docker.docker_container:
+    name: grafana
+    image: grafana/grafana
+    published_ports: "{{ grafana_port }}:3000"
+    volumes: /opt/grafana:/etc/grafana
+    restart_policy: always
+    restart: yes

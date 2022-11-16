@@ -1,0 +1,56 @@
+- name: Generate repository key
+  ansible.builtin.apt_key:
+    url: https://packages.grafana.com/gpg.key
+
+- name: Grafana repository
+  ansible.builtin.apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+
+- name: Install Grafana
+  ansible.builtin.apt:
+    name: grafana
+    state: present
+
+- name: Copy grafana.ini file
+  ansible.builtin.template:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini # change the path for docker
+  notify: Restart grafana
+
+- name: Start Grafana
+  ansible.builtin.service:
+    name: grafana-server
+    state: started
+    enabled: yes
+
+- name: Create a directory for dashboards
+  ansible.builtin.file:
+    path: /var/lib/grafana/dashboards
+    state: directory
+
+- name: Add Main dashboard
+  ansible.builtin.copy:
+    src: main.json
+    dest: /var/lib/grafana/dashboards
+
+- name: Add data sources
+  ansible.builtin.copy:
+    src: datasources.yaml
+    dest: /etc/grafana/provisioning/datasources
+  notify: Restart grafana
+
+- name: Add providers
+  ansible.builtin.copy:
+    src: providers.yaml
+    dest: /etc/grafana/provisioning/dashboards
+  notify: Restart grafana
+
+- name: Add Syslog dashboard
+  ansible.builtin.copy:
+    src: syslog.json
+    dest: /var/lib/grafana/dashboards
+
+- name: Add MySQL dashboard
+  ansible.builtin.copy:
+    src: mysql.json
+    dest: /var/lib/grafana/dashboards
