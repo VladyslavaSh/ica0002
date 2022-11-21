@@ -1,4 +1,4 @@
-- name: Install Bind Exporter
+- name: Install bind9 exporter
   ansible.builtin.apt:
     name: prometheus-bind-exporter
     state: present
@@ -9,7 +9,7 @@
 #     src: prometheus-bind-exporter
 #  notify: Restart prometheus-bind-exporter
 
-- name: Start Bind9 exporter
+- name: Start bind9 exporter
   ansible.builtin.service:
     name: prometheus-bind-exporter
     state: started

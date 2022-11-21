@@ -1,4 +1,4 @@
-- name: Restart prometheus-bind-exporter
+- name: Restart bind9 exporter
   ansible.builtin.service:
     name: prometheus-bind-exporter
     state: restarted

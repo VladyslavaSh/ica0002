@@ -2,8 +2,9 @@
 11 20 * * *     backup   duplicity --no-encryption full /home/backup/influxdb/ rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/influxdb
 11 20 * * 1-6   backup   duplicity --no-encryption incremental /home/backup/influxdb/ rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/influxdb
 
+# Restoration:
 # duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld//home/VladyslavaSh/influxdb /home/backup/restore/influxdb
-
 # service telegraf stop
 # influx -execute 'DROP DATABASE telegraf'
-# influxd restore -portable /home/backup/restore/influxdb
+# influxd restore -portable -database telegraf /home/backup/restore/influxdb
+# service telegraf start

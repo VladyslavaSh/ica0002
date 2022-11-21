@@ -1,0 +1,43 @@
+global
+    log /dev/log    local0
+    log /dev/log    local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log    global
+    mode    http
+    option    httplog
+    option    dontlognull
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+    errorfile 400 /etc/haproxy/errors/400.http
+    errorfile 403 /etc/haproxy/errors/403.http
+    errorfile 408 /etc/haproxy/errors/408.http
+    errorfile 500 /etc/haproxy/errors/500.http
+    errorfile 502 /etc/haproxy/errors/502.http
+    errorfile 503 /etc/haproxy/errors/503.http
+    errorfile 504 /etc/haproxy/errors/504.http
+
+# Load balancing: we have several paths for something (vm1 & vm2)
+listen agama
+    bind :88
+    stats enable
+    stats uri /stats
+    server agama11 VladyslavaSh-1:8001 check
+    server agama12 VladyslavaSh-1:8001 check
+    server agama21 VladyslavaSh-2:8001 check
+    server agama22 VladyslavaSh-2:8001 check
+
+#listen uni
+#    bind *:80
+#    stats uri /stats
+#    server c1 VladyslavaSh-1:10095 check
+#    server c2 VladyslavaSh-1:10096 check
+#    server c3 VladyslavaSh-2:10095 check
+#    server c4 VladyslavaSh-2:10096 check

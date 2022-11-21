@@ -1,7 +1,7 @@
 vm1: VladyslavaSh-1
 vm2: VladyslavaSh-2
 
-mysql_host: VladyslavaSh-1
+mysql_host: VladyslavaSh-2
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -12,7 +12,6 @@ mysql_password: !vault |
           6234653464393433630a313537356538363839306562323635326130353635303939313431376166
           6333
 
-
 startup_name: vlada.vld
 
 forwarders:
@@ -21,6 +20,7 @@ forwarders:
   - 9.9.9.9
   - 9.9.9.10
 
+mysql_exporter_user: mysql_exporter
 mysql_exporter_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           37656530613334663837333362373637393138393634316137626561373336643933336664306333
@@ -41,6 +41,7 @@ grafana_password: !vault |
           3061626431393863640a363661633763363539353234656137373661633836633031393931303663
           3238
 
+mysql_backup_user: backup
 mysql_backup_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           65313438363530333135646130633763663035333065316562613038316634393335633036336434
@@ -49,7 +50,7 @@ mysql_backup_password: !vault |
           6664366334303031650a323135386363646239366439636665376566326433643561633334643037
           3765
 
-
+mysql_replication_user: replication
 mysql_replication_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           66346239616130396461636330333532306266663537383539356235383331663666353637356365

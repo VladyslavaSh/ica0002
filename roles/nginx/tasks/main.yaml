@@ -1,8 +1,7 @@
-- name: Install Nginx
+- name: Install nginx
   ansible.builtin.apt:
     name: nginx
     state: present
-
 
 - name: Copy a default configuration file
   ansible.builtin.template:
@@ -12,7 +11,7 @@
      - Restart nginx
      - Restart prometheus-nginx-exporter
 
-- name: Start Nginx
+- name: Start nginx
   ansible.builtin.service:
     name: nginx
     state: started

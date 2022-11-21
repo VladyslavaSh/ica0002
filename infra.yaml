@@ -6,7 +6,10 @@
       - node_exporter
       - backup
     become: yes
-    tags: s
+    tags:
+       - s
+       - bs
+       - ms
 
   - name: DNS server
     hosts: dns_servers
@@ -15,7 +18,9 @@
       - bind
       - bind_exporter
     become: yes
-    tags: b
+    tags:
+      - b
+      - bs
 
   - name: Resolver
     hosts: all
@@ -43,10 +48,18 @@
     become: yes
     tags: p
 
+  - name: Docker
+    hosts: docker
+    roles:
+      - docker
+    become: yes
+    tags:
+      - g
+      - w
+
   - name: Grafana
     hosts: grafana
     roles:
-      - docker
       - grafana
       - nginx
       - nginx_exporter
@@ -74,6 +87,7 @@
     tags:
       - m
       - mx
+      - ms
 
   - name: Web Servers
     hosts: web_servers
@@ -87,3 +101,13 @@
     tags:
       - w
       - mx
+
+  - name: Load Balancing
+    hosts: haproxy
+    roles:
+      - haproxy
+      - keepalived
+    become: yes
+    tags:
+      - hp
+

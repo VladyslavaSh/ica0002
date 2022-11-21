@@ -3,7 +3,7 @@
     name: mysql-server
     state: present
 
-- name: Install PyMysql
+- name: Install pymysql
   ansible.builtin.apt:
     name: python3-pymysql
     state: present
@@ -32,7 +32,7 @@
 
 - name: Create MySQL replication user
   community.mysql.mysql_user:
-     name: replication
+     name: "{{ mysql_replication_user }}"
      password: "{{ mysql_replication_password }}"
      host: "%"
      login_unix_socket: /var/run/mysqld/mysqld.sock

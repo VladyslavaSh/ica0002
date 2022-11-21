@@ -4,15 +4,13 @@
     dest: /usr/local/bin/
     mode: 0755
 
-
-- name: Create Influxdb exporter service
+- name: Create influxdb exporter service
   ansible.builtin.template:
     src: prometheus-influxdb-stats-exporter.service
     dest: /etc/systemd/system/prometheus-influxdb-stats-exporter.service
   notify:
     - Daemon reload
     - Restart influxdb exporter
-
 
 - name: Start influxdb exporter
   ansible.builtin.service:

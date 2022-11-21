@@ -36,5 +36,13 @@ duplicity --no-encryption restore rsync://VladyslavaSh@backup.vlada.vld//home/Vl
 service telegraf stop
 influx -execute 'DROP DATABASE telegraf'
 influxd restore -portable -database telegraf /home/backup/restore/influxdb
+```
+#### Since the telegaf was stopped, you need to start it. This can be done in two ways, so choose the one that suits you.
+##### Start manually as a root user:
+```
 service telegraf start
+```
+##### Run ansible playbook:
+```
+ansible-playbook infra.yaml
 ```

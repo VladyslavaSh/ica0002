@@ -11,34 +11,44 @@
   ansible.builtin.template:
     src: grafana.ini
     dest: /opt/grafana/grafana.ini
-  notify: Restart grafana
+#  notify: Restart grafana
 
-- name: Add Main dashboard
+- name: Add dashboards and file with dashboards path
   ansible.builtin.copy:
-    src: main.json
-    dest: /opt/grafana/provisioning/dashboards/main.json
+    src: "{{ item }}"
+    dest: /opt/grafana/provisioning/dashboards/{{ item }}
+  loop:
+    - main.json
+    - syslog.json
+    - mysql.json
+    - providers.yaml
 
-- name: Add Syslog dashboard
-  ansible.builtin.copy:
-    src: syslog.json
-    dest: /opt/grafana/provisioning/dashboards/syslog.json
+#- name: Add Main dashboard
+#  ansible.builtin.copy:
+#    src: main.json
+#    dest: /opt/grafana/provisioning/dashboards/main.json
 
-- name: Add MySQL dashboard
-  ansible.builtin.copy:
-    src: mysql.json
-    dest: /opt/grafana/provisioning/dashboards/mysql.json
+#- name: Add Syslog dashboard
+#  ansible.builtin.copy:
+#    src: syslog.json
+#    dest: /opt/grafana/provisioning/dashboards/syslog.json
 
-- name: Add file with dashboards paths
-  ansible.builtin.copy:
-    src: providers.yaml
-    dest: /opt/grafana/provisioning/dashboards
-  notify: Restart grafana
+#- name: Add MySQL dashboard
+#  ansible.builtin.copy:
+#    src: mysql.json
+#    dest: /opt/grafana/provisioning/dashboards/mysql.json
+
+#- name: Add file with dashboards paths
+#  ansible.builtin.copy:
+#    src: providers.yaml
+#    dest: /opt/grafana/provisioning/dashboards
+#  notify: Restart grafana
 
 - name: Add datasources
   ansible.builtin.copy:
     src: datasources.yaml
     dest: /opt/grafana/provisioning/datasources
-  notify: Restart grafana
+#  notify: Restart grafana
 
 - name: Grafana Docker container
   community.docker.docker_container:
@@ -47,4 +57,4 @@
     published_ports: "{{ grafana_port }}:3000"
     volumes: /opt/grafana:/etc/grafana
     restart_policy: always
-    restart: yes
+#    restart: yes

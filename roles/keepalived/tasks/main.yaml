@@ -1,0 +1,51 @@
+- name: Install keepalived
+  ansible.builtin.apt:
+    name: keepalived
+    state: present
+
+- name: Create directory keepalived_script
+  ansible.builtin.file:
+    path: /home/keepalived_script
+    state: directory
+    mode: 0755
+
+- name: Add keepalived config
+  ansible.builtin.template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify: Restart keepalived
+
+- name: Add keepalived script
+  ansible.builtin.template:
+    src: keepalived_script.j2
+    dest: /home/keepalived_script/keepalived_script
+    mode: 0755
+  notify: Restart keepalived
+
+
+- name: Upload keepalived exporter file
+  ansible.builtin.unarchive:
+    src: http://backup/keepalived-exporter-1.2.0.linux-amd64.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+    mode: 0755
+
+- name: Create keepalived exporter service
+  ansible.builtin.template:
+    src: prometheus-keepalived-exporter.service.j2
+    dest: /etc/systemd/system/prometheus-keepalived-exporter.service
+  notify:
+    - Daemon reload
+    - Restart keepalived exporter
+
+- name: Start keepalived
+  ansible.builtin.service:
+    name: keepalived
+    state: started
+    enabled: yes
+
+- name: Start keepalived exporter
+  ansible.builtin.service:
+    name: prometheus-keepalived-exporter
+    state: started
+    enabled: yes
