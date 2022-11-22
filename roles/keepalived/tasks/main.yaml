@@ -29,6 +29,7 @@
     dest: /usr/local/bin
     remote_src: yes
     mode: 0755
+  notify: Restart keepalived exporter
 
 - name: Create keepalived exporter service
   ansible.builtin.template:
