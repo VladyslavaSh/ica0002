@@ -42,8 +42,8 @@
     hosts: prometheus
     gather_facts: no
     roles:
-      - nginx
       - prometheus
+      - nginx
       - nginx_exporter
     become: yes
     tags: p

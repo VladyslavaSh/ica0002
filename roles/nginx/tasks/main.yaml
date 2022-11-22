@@ -9,7 +9,7 @@
     dest: /etc/nginx/sites-enabled/default
   notify:
      - Restart nginx
-     - Restart prometheus-nginx-exporter
+#     - Restart prometheus-nginx-exporter
 
 - name: Start nginx
   ansible.builtin.service:

@@ -1,3 +1,6 @@
+#- name: Flush handlers
+#  meta: flush_handlers
+
 - name: Install nginx exporter
   ansible.builtin.apt:
     name: prometheus-nginx-exporter

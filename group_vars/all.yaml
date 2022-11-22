@@ -1,7 +1,7 @@
 vm1: VladyslavaSh-1
 vm2: VladyslavaSh-2
 
-mysql_host: VladyslavaSh-2
+mysql_host: VladyslavaSh-1
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -65,3 +65,6 @@ mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first |
 
 grafana_port: 3001
 agama_port: 8001
+# loop for containers ports
+
+agama_containers_per_host: 2

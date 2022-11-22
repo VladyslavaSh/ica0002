@@ -42,3 +42,13 @@ mysql_slave_status_slave_io_running
 
 # MySQL replication SQL thread
 mysql_slave_status_slave_sql_running
+
+
+# HAProxy state
+haproxy_up
+
+# HAProxy server state
+haproxy_server_up
+
+# State of vrrp
+keepalived_vrrp_state

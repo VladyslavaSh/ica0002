@@ -1,6 +1,10 @@
 - name: Restart grafana
-  ansible.builtin.service:
+  community.docker.docker_container:
     name: grafana
-    state: restarted
-    enabled: yes
+    restart: yes
 
+#- name: Restart grafana
+#  ansible.builtin.service:
+#    name: grafana
+#    state: restarted
+#    enabled: yes

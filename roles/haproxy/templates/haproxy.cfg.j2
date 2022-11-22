@@ -29,10 +29,11 @@ listen agama
     bind :88
     stats enable
     stats uri /stats
-    server agama1 VladyslavaSh-1:8001 check
-    server agama2 VladyslavaSh-1:8001 check
-    server agama3 VladyslavaSh-2:8001 check
-    server agama4 VladyslavaSh-2:8001 check
+{% for h in groups['web_servers'] %}
+{%   for c in range(agama_containers_per_host) %}
+    server {{ h }}-agama-{{ c }} {{ h }}:{{ agama_port + c }} check
+{%   endfor %}
+{% endfor %}
 
 #listen uni
 #    bind *:80
