@@ -6,4 +6,4 @@
   ansible.builtin.service:
     name: prometheus-node-exporter
     state: restarted
-    enabled: yes
+#    enabled: yes

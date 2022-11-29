@@ -1,6 +1,8 @@
 - name: Install bind9
   ansible.builtin.apt:
-    name: bind9
+    name:
+      - bind9
+      - python3-dnspython
 
 - name: Copy named.conf.options file
   ansible.builtin.template:
@@ -16,15 +18,40 @@
 
 - name: Copy zone file
   ansible.builtin.template:
-     dest: /var/lib/bind/db.vlada.vld
+     dest: /var/cache/bind/db.{{ startup_name }}
      src: db.vlada.vld.j2
   notify: Restart bind9
+  when: inventory_hostname in groups['dns_masters']
 
-#- name: Check collected variables
-#  ansible.builtin.debug:
-#     var:
-#     - vm1
-#     - vm2
+- name: Copy reverse zone file
+  ansible.builtin.template:
+      dest: /var/cache/bind/db.rev
+      src: db.rev.j2
+  notify: Restart bind9
+  when: inventory_hostname in groups['dns_masters']
+
+- name: A records
+  community.general.nsupdate:
+     key_name: "nsupdate.key"
+     key_secret: "{{ update_key }}"
+     server: "localhost"
+     zone: "{{ startup_name }}."
+     record: "backup.{{ startup_name }}."
+     value: "{{ backup_server_ip }}"
+     type: "A"
+  when: inventory_hostname in groups['dns_masters']
+
+- name: CNAME records
+  community.general.nsupdate:
+     key_name: "nsupdate.key"
+     key_secret: "{{ update_key }}"
+     server: "localhost"
+     zone: "{{ startup_name }}."
+     record: "{{ item.key }}.{{ startup_name }}."
+     value: "{{ item.value }}.{{ startup_name }}."
+     type: "CNAME"
+  loop: "{{ dns_cname_records | dict2items }}"
+  when: inventory_hostname in groups['dns_masters']
 
 - name: Start bind9
   ansible.builtin.service:

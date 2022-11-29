@@ -22,6 +22,7 @@
     - syslog.json
     - mysql.json
     - providers.yaml
+  notify: Restart grafana
 
 #- name: Add Main dashboard
 #  ansible.builtin.copy:

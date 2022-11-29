@@ -6,7 +6,7 @@ server {
 		#uwsgi_pass localhost:5000;
 		#include uwsgi_params;
                 proxy_set_header Host $http_host;
-                proxy_pass http://localhost:{{ agama_port }};
+                proxy_pass http://localhost:{{ agama_starting_port }};
         }
 
 {% if inventory_hostname in groups['prometheus'] %}

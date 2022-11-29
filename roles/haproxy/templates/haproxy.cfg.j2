@@ -24,21 +24,13 @@ defaults
     errorfile 503 /etc/haproxy/errors/503.http
     errorfile 504 /etc/haproxy/errors/504.http
 
-# Load balancing: we have several paths for something (vm1 & vm2)
+# Load balancing: several paths (vm1 & vm2)
 listen agama
     bind :88
     stats enable
     stats uri /stats
 {% for h in groups['web_servers'] %}
 {%   for c in range(agama_containers_per_host) %}
-    server {{ h }}-agama-{{ c }} {{ h }}:{{ agama_port + c }} check
+    server {{ h }}-agama-{{ c }} {{ h }}:{{ agama_starting_port + c }} check
 {%   endfor %}
 {% endfor %}
-
-#listen uni
-#    bind *:80
-#    stats uri /stats
-#    server c1 VladyslavaSh-1:10095 check
-#    server c2 VladyslavaSh-1:10096 check
-#    server c3 VladyslavaSh-2:10095 check
-#    server c4 VladyslavaSh-2:10096 check

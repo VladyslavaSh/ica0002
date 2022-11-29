@@ -1,8 +1,15 @@
-VladyslavaSh-1 ansible_host=193.40.156.67 ansible_port=34522 ansible_ssh_user=ubuntu
-VladyslavaSh-2 ansible_host=193.40.156.67 ansible_port=45122 ansible_ssh_user=ubuntu
+VladyslavaSh-1 ansible_host=193.40.156.67 ansible_port=33622 ansible_ssh_user=ubuntu
+VladyslavaSh-2 ansible_host=193.40.156.67 ansible_port=37522 ansible_ssh_user=ubuntu
 
-[dns_servers]
+[dns_masters]
 VladyslavaSh-2
+
+[dns_slaves]
+VladyslavaSh-1
+
+[dns_servers:children]
+dns_masters
+dns_slaves
 
 [db_servers]
 VladyslavaSh-1

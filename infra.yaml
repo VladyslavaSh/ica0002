@@ -8,23 +8,22 @@
     become: yes
     tags:
        - s
-       - bs
+       - b
        - ms
 
   - name: DNS server
     hosts: dns_servers
-    gather_facts: no
+    gather_facts: yes
     roles:
       - bind
       - bind_exporter
     become: yes
     tags:
       - b
-      - bs
 
   - name: Resolver
     hosts: all
-    gather_facts: no
+    gather_facts: yes
     roles:
       - resolver
     become: yes
@@ -106,8 +105,8 @@
   - name: Load Balancing
     hosts: haproxy
     roles:
-      - haproxy
       - keepalived
+      - haproxy
     become: yes
     tags:
       - hp

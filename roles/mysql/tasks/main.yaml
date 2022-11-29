@@ -14,6 +14,14 @@
      dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: Restart mysql
 
+
+#- name: Copy .my.cnf file
+#  ansible.builtin.template:
+#      src: .my.cnf
+#      dest: /root/.my.cnf
+#  notify: Restart mysql
+
+
 - name: Create MySQL database
   community.mysql.mysql_db:
      name: "{{ mysql_database }}"

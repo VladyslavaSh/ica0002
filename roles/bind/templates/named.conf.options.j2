@@ -6,7 +6,7 @@ options {
 
         forwarders {
         {% for fwrd in forwarders %}
-            {{ fwrd }};
+        {{ fwrd }};
         {% endfor %}
         };
 
@@ -21,4 +21,15 @@ options {
 
 statistics-channels {
   inet 127.0.0.1 port 8053 allow { 127.0.0.1; };
+};
+
+# transfer.key is used to authenticate slave on master
+key "transfer.key" {
+        algorithm hmac-sha256;
+        secret "{{ transfer_key }}";
+};
+
+key "nsupdate.key" {
+        algorithm hmac-sha256;
+        secret "{{ update_key }}";
 };

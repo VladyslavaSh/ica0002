@@ -14,8 +14,7 @@ vrrp_instance XXX {
     {% endif %}
     advert_int 1                            
     virtual_ipaddress {                     
-        192.168.101.89/24
-        #192.168.101.{{ hostvars['VladyslavaSh-1']['ansible_default_ipv4']['address'].split('.')[-1] }}/24                   
+        192.168.101.{{ hostvars['VladyslavaSh-1']['ansible_default_ipv4']['address'].split('.')[-1] }}/24                   
     }
 #    unicast_peer {                          
 #        192.168.43.80
