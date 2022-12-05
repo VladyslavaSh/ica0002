@@ -1,31 +1,31 @@
 zone "{{ startup_name }}" {
-    {% if inventory_hostname in groups['dns_masters'] %}
-    type master;
-    allow-transfer {127.0.0.1, key transfer.key; };
-    allow-update {127.0.0.1; key nsupdate.key; };
-    {% else %}
-    type slave;
+{% if inventory_hostname in groups['dns_masters'] %}
+    type primary;
+    allow-transfer { key transfer_key; };
+    allow-update { key update_key; };
+{% else %}
+    type secondary;
     masters { {{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }}; };
-    {% endif %}
+{% endif %}
     file "db.{{ startup_name }}";
 };
 
 {% if inventory_hostname in groups['dns_slaves'] %}
 server {{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }} {
-    keys { transfer.key; };
+    keys { transfer_key; };
 };
 {% endif %}
 
 
 
 zone "{{ reverse }}" {
-    {% if inventory_hostname in groups['dns_masters'] %}
-    type master;
-    allow-transfer { 127.0.0.1, key transfer.key; };
-    allow-update {127.0.0.1; key nsupdate.key; };
-    {% else %}
-    type slave;
+{% if inventory_hostname in groups['dns_masters'] %}
+    type primary;
+    allow-transfer { key transfer_key; };
+    allow-update { key update_key; };
+{% else %}
+    type secondary;
     masters { {{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }}; };
-    {% endif %}
+{% endif %}
     file "db.rev";
 };

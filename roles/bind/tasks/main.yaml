@@ -30,10 +30,20 @@
   notify: Restart bind9
   when: inventory_hostname in groups['dns_masters']
 
+- name: Run handlers
+  meta: flush_handlers
+
+- name: Start bind9
+  ansible.builtin.service:
+    name: bind9
+    state: started
+    enabled: yes
+
 - name: A records
   community.general.nsupdate:
-     key_name: "nsupdate.key"
+     key_name: "update_key"
      key_secret: "{{ update_key }}"
+     key_algorithm: "hmac-sha256"
      server: "localhost"
      zone: "{{ startup_name }}."
      record: "backup.{{ startup_name }}."
@@ -43,8 +53,9 @@
 
 - name: CNAME records
   community.general.nsupdate:
-     key_name: "nsupdate.key"
+     key_name: "update_key"
      key_secret: "{{ update_key }}"
+     key_algorithm: "hmac-sha256"
      server: "localhost"
      zone: "{{ startup_name }}."
      record: "{{ item.key }}.{{ startup_name }}."
@@ -52,9 +63,3 @@
      type: "CNAME"
   loop: "{{ dns_cname_records | dict2items }}"
   when: inventory_hostname in groups['dns_masters']
-
-- name: Start bind9
-  ansible.builtin.service:
-    name: bind9
-    state: started
-    enabled: yes

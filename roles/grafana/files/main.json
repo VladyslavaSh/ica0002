@@ -90,7 +90,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -310,7 +310,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -396,12 +397,13 @@
           "refId": "B"
         }
       ],
-      "title": "InfluxDB",
+      "title": "InfluxDB write rate",
       "type": "timeseries"
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -487,7 +489,7 @@
           "refId": "B"
         }
       ],
-      "title": "MySQL ",
+      "title": "MySQL commands",
       "type": "timeseries"
     },
     {
@@ -578,7 +580,7 @@
           "refId": "B"
         }
       ],
-      "title": "Bind9 ",
+      "title": "Bind9  records",
       "type": "timeseries"
     },
     {
@@ -669,7 +671,7 @@
           "refId": "B"
         }
       ],
-      "title": "Nginx ",
+      "title": "Nginx requests",
       "type": "timeseries"
     },
     {
@@ -735,7 +737,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -816,7 +818,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -895,7 +897,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -920,7 +922,7 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},

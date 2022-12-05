@@ -1,11 +1,13 @@
-VladyslavaSh-1 ansible_host=193.40.156.67 ansible_port=33622 ansible_ssh_user=ubuntu
-VladyslavaSh-2 ansible_host=193.40.156.67 ansible_port=37522 ansible_ssh_user=ubuntu
+VladyslavaSh-1 ansible_host=193.40.156.67 ansible_port=15122 ansible_ssh_user=ubuntu
+VladyslavaSh-2 ansible_host=193.40.156.67 ansible_port=15722 ansible_ssh_user=ubuntu
+VladyslavaSh-3 ansible_host=193.40.156.67 ansible_port=18122 ansible_ssh_user=ubuntu
 
 [dns_masters]
-VladyslavaSh-2
+VladyslavaSh-3
 
 [dns_slaves]
 VladyslavaSh-1
+VladyslavaSh-2
 
 [dns_servers:children]
 dns_masters
@@ -20,21 +22,23 @@ VladyslavaSh-1
 VladyslavaSh-2
 
 [prometheus]
-VladyslavaSh-2
+VladyslavaSh-3
 
 [grafana]
-VladyslavaSh-1
+VladyslavaSh-3
 
 [influxdb]
-VladyslavaSh-1
+VladyslavaSh-3
 
 [rsyslog]
 VladyslavaSh-1
 VladyslavaSh-2
+VladyslavaSh-3
 
 [docker]
 VladyslavaSh-1
 VladyslavaSh-2
+VladyslavaSh-3
 
 [haproxy]
 VladyslavaSh-1

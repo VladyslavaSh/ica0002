@@ -1,12 +1,15 @@
-- name: Install MySQL
+- name: Install MySQL and pymysql
   ansible.builtin.apt:
-    name: mysql-server
+    name:
+       - mysql-server
+       - python3-pymysql
     state: present
 
-- name: Install pymysql
-  ansible.builtin.apt:
-    name: python3-pymysql
-    state: present
+- name: Start MySQL
+  ansible.builtin.service:
+     name: mysql
+     state: started
+     enabled: yes
 
 - name: Copy override.cnf file
   ansible.builtin.template:
@@ -56,8 +59,3 @@
      - Reset MySQL source
      - Reset MySQL replica
 
-- name: Start MySQL
-  ansible.builtin.service:
-     name: mysql
-     state: started
-     enabled: yes

@@ -2,7 +2,7 @@ acl lan {192.168.42.0/23; 127.0.0.0/8; 172.17.0.0/16;};
 
 
 options {
-        directory "/var/lib/bind";
+        directory "/var/cache/bind";
 
         forwarders {
         {% for fwrd in forwarders %}
@@ -24,12 +24,12 @@ statistics-channels {
 };
 
 # transfer.key is used to authenticate slave on master
-key "transfer.key" {
+key "transfer_key" {
         algorithm hmac-sha256;
         secret "{{ transfer_key }}";
 };
 
-key "nsupdate.key" {
+key "update_key" {
         algorithm hmac-sha256;
         secret "{{ update_key }}";
 };
