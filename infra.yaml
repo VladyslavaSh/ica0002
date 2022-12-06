@@ -45,6 +45,7 @@
       - prometheus
       - nginx
       - nginx_exporter
+      - node_exporter
     become: yes
     tags: p
 
@@ -64,7 +65,6 @@
       - grafana
       - nginx
       - nginx_exporter
-      - node_exporter
     become: yes
     tags: g
 
@@ -85,6 +85,7 @@
       - mysql
       - mysql_exporter
       - mysql_backup
+      - node_exporter
     become: yes
     tags:
       - m

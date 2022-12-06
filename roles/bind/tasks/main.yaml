@@ -20,6 +20,7 @@
   ansible.builtin.template:
      dest: /var/cache/bind/db.{{ startup_name }}
      src: db.vlada.vld.j2
+     force: no
   notify: Restart bind9
   when: inventory_hostname in groups['dns_masters']
 
@@ -27,6 +28,7 @@
   ansible.builtin.template:
       dest: /var/cache/bind/db.rev
       src: db.rev.j2
+      force: no
   notify: Restart bind9
   when: inventory_hostname in groups['dns_masters']
 
@@ -46,9 +48,10 @@
      key_algorithm: "hmac-sha256"
      server: "localhost"
      zone: "{{ startup_name }}."
-     record: "backup.{{ startup_name }}."
-     value: "{{ backup_server_ip }}"
+     record: "{{ item.key }}.{{ startup_name }}."
+     value: "{{ item.value }}"
      type: "A"
+  loop: "{{ dns_a_records | dict2items }}"
   when: inventory_hostname in groups['dns_masters']
 
 - name: CNAME records

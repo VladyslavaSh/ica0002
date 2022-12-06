@@ -1,7 +1,7 @@
 vm1: VladyslavaSh-1
 vm2: VladyslavaSh-2
 
-mysql_host: VladyslavaSh-2
+mysql_host: VladyslavaSh-1
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -104,3 +104,5 @@ dns_cname_records:
   prometheus: "{{ groups['prometheus'][0] }}"
   web1: "{{ groups['web_servers'][0] }}"
   web2: "{{ groups['web_servers'][1] }}"
+
+# grafana_datasource: VladyslavaSh-3

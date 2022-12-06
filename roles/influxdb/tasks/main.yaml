@@ -8,11 +8,6 @@
     repo: 'deb https://repos.influxdata.com/ubuntu trusty stable'
     state: present
 
-#- name: Download InfluxDB package
-#  ansible.builtin.get_url:
-#    url: https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb
-#    dest: 
-
 - name: Install influxdb
   ansible.builtin.apt:
     name: influxdb
