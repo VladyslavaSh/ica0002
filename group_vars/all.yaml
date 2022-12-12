@@ -106,3 +106,5 @@ dns_cname_records:
   web2: "{{ groups['web_servers'][1] }}"
 
 # grafana_datasource: VladyslavaSh-3
+
+
