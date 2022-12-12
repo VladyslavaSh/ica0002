@@ -5,6 +5,7 @@
     host: "%"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     priv: "{{ mysql_database }}.*:LOCK TABLES,SELECT"
+  no_log: true
 
 - name: Upload MySQL config file
   ansible.builtin.template:
