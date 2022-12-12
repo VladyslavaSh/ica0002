@@ -53,6 +53,7 @@
      type: "A"
   loop: "{{ dns_a_records | dict2items }}"
   when: inventory_hostname in groups['dns_masters']
+  no_log: true
 
 - name: CNAME records
   community.general.nsupdate:
@@ -66,3 +67,4 @@
      type: "CNAME"
   loop: "{{ dns_cname_records | dict2items }}"
   when: inventory_hostname in groups['dns_masters']
+  no_log: true
