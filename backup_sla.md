@@ -8,9 +8,9 @@
 
 RPO is the acceptable amount of data that can be lost in the event of a failure. 
 
-###MySQL: Full backups are done daily at 23:10 UTC and incremental backups are done at 23:10 UTC on every day-of-week from Monday through Saturday.
+### MySQL: Full backups are done daily at 23:10 UTC and incremental backups are done at 23:10 UTC on every day-of-week from Monday through Saturday.
 
-###InfluxDB: Full backups are done daily at 22:10 UTC and incremental backups are done at 22:10 UTC on every day-of-week from Monday through Saturday.
+### InfluxDB: Full backups are done daily at 22:10 UTC and incremental backups are done at 22:10 UTC on every day-of-week from Monday through Saturday.
 
 
 ## Versioning and retention
