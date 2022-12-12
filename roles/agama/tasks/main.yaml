@@ -14,7 +14,7 @@
 - name: Build Docker image
   community.docker.docker_image:
     name: agama
-    source: build
+    source: build   # from where the module retrieve the image
     build:
       path: /opt/agama
 

@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: /opt/grafana/provisioning/{{ item }}
     state: directory
-    recurse: yes
+    recurse: yes # recursively set the specified file attributes
   loop:
     - dashboards
     - datasources

@@ -20,7 +20,7 @@
   ansible.builtin.template:
      dest: /var/cache/bind/db.{{ startup_name }}
      src: db.vlada.vld.j2
-     force: no
+     force: no   # file will only be transferred if the destination does not exist
   notify: Restart bind9
   when: inventory_hostname in groups['dns_masters']
 

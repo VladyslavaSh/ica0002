@@ -1,7 +1,7 @@
 vm1: VladyslavaSh-1
 vm2: VladyslavaSh-2
 
-mysql_host: VladyslavaSh-1
+mysql_host: VladyslavaSh-2
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |

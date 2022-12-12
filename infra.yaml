@@ -3,7 +3,6 @@
     hosts: all
     roles:
       - init
-      - backup
     become: yes
     tags:
        - s
@@ -37,6 +36,16 @@
       - rsyslog
     become: yes
     tags: i
+
+  - name: Backup
+    hosts: all
+    gather_facts: no
+    roles:
+      - backup
+    become: yes
+    tags:
+       - m
+       - i
 
   - name: Prometheus monitoring
     hosts: prometheus
